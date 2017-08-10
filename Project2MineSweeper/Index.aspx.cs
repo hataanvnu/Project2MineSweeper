@@ -36,8 +36,9 @@ namespace Project2MineSweeper
                     boardHtml += "<td>";
 
                     //boardHtml += $"<asp:Button ID='Button' runat='server' Text='{i}_{j}' />";
-                    boardHtml += $"<a href='Index.aspx?x={x}&y={y}'><input id='Button{x}_{y}' type='button' value='{x}_{y}' style='width: 50px; height: 50px;' onclick='alert('hej')' /></a>";
-
+                    boardHtml += $"<input id='Button_{x}_{y}' class='element' type='button' value='{x}_{y}' style='width: 50px; height: 50px;'/>";
+                    // <a href='Index.aspx?x={x}&y={y}'></a>
+                    //
                     boardHtml += "</td>";
                 }
                 boardHtml += "</tr>";

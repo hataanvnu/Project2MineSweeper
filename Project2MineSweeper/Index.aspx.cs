@@ -71,20 +71,40 @@ namespace Project2MineSweeper
 
                     boardHtml += "<td>";
 
-                    boardHtml += $"<input id='Button_{j}_{i}' class='element' type='button'";
+                    boardHtml += $"<input id='Button_{j}_{i}' class='element' type='button' style='font-weight: bold; font-size: 30px; width: 50px; height: 50px;";
 
                     if (tileClicked.IsClicked)
                         if (tileClicked.IsBomb)
-                            boardHtml += "value='B'";
+                            boardHtml += "background-color:red; color:white;' value='B'";
                         else
+                        {
+                            switch (tileClicked.NumAdjacentBombs)
+                            {
+                                case 0:
+                                    boardHtml += "background-color:darkgreen;'";
+                                    break;
+                                case 1:
+                                    boardHtml += "color:blue;'";
+                                    break;
+                                case 2:
+                                    boardHtml += "color:green;'";
+                                    break;
+                                case 3:
+                                    boardHtml += "color:red;'";
+                                    break;
+                                case 4:
+                                    boardHtml += "color:purple;'";
+                                    break;
+                                default:
+                                    boardHtml += "color:orangered;'";
+                                    break;
+                            }
                             boardHtml += $"value='{tileClicked.NumAdjacentBombs}'";
+                        }
                     else if (tileClicked.IsFlagged)
-                        boardHtml += "value='F'";
+                        boardHtml += "'value='F'";
                     else
-                        boardHtml += "value='&nbsp;'";
-
-
-                    boardHtml += "style = 'width: 50px; height: 50px;' /> ";
+                        boardHtml += "'value='&nbsp;'";
 
                     boardHtml += "</td>";
                 }

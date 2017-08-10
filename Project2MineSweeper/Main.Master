@@ -14,7 +14,7 @@
     <form id="form1" runat="server">
         <div>
             <h1>
-                Minesweeper idk
+                Trumpsweeper
             </h1>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>

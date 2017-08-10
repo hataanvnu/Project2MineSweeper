@@ -12,11 +12,14 @@ namespace MineSweeperLibrary
 
         public int NumBombs { get; set; }
 
+        public bool GameOver { get; set; }
+
         internal int dimension = 10;
 
         public GameBoard(int difficulty)
         {
             NumBombs = difficulty;
+            GameOver = false;
 
             Tiles = new Tile[dimension, dimension];
 

@@ -36,11 +36,92 @@ namespace MineSweeperLibrary
 
         private static void SetNumberOfAdjacentBombs(GameBoard gameBoard, BombCoordinate[] bombCoordinates)
         {
-            foreach (var tile in gameBoard.Tiles)
+            Tile[,] map = gameBoard.Tiles;
+
+            foreach (var bomb in bombCoordinates)
             {
+                int x = bomb.xCoordinate;
+                int y = bomb.yCoordinate;
 
-                tile.NumAdjacentBombs++;
+                #region bombräkning
+                if (x == 0)
+                {
+                    if (y == 0)
+                    {
+                        map[x, y + 1].NumAdjacentBombs++;
+                        map[x + 1, y + 1].NumAdjacentBombs++;
+                        map[x + 1, y].NumAdjacentBombs++;
 
+                    }
+                    else if (y == map.GetLength(0)-1)
+                    {
+                        map[x + 1, y - 1].NumAdjacentBombs++;
+                        map[x, y - 1].NumAdjacentBombs++;
+                        map[x + 1, y].NumAdjacentBombs++;
+                    }
+                    else
+                    {
+                        map[x, y + 1].NumAdjacentBombs++;
+                        map[x + 1, y + 1].NumAdjacentBombs++;
+                        map[x + 1, y].NumAdjacentBombs++;
+                        map[x, y - 1].NumAdjacentBombs++;
+                        map[x + 1, y - 1].NumAdjacentBombs++;
+
+                    }
+                }
+                else if (x == map.GetLength(0)-1)
+                {
+                    if (y == 0)
+                    {
+                        map[x, y + 1].NumAdjacentBombs++;
+                        map[x - 1, y + 1].NumAdjacentBombs++;
+                        map[x - 1, y].NumAdjacentBombs++;
+                    }
+                    else if (y == map.GetLength(0)-1)
+                    {
+                        map[x - 1, y].NumAdjacentBombs++;
+                        map[x, y - 1].NumAdjacentBombs++;
+                        map[x - 1, y - 1].NumAdjacentBombs++;
+                    }
+                    else
+                    {
+                        map[x, y + 1].NumAdjacentBombs++;
+                        map[x - 1, y + 1].NumAdjacentBombs++;
+                        map[x - 1, y].NumAdjacentBombs++;
+                        map[x, y - 1].NumAdjacentBombs++;
+                        map[x - 1, y - 1].NumAdjacentBombs++;
+                    }
+
+
+                }
+                else if (y == 0)
+                {
+                    map[x, y + 1].NumAdjacentBombs++;
+                    map[x + 1, y + 1].NumAdjacentBombs++;
+                    map[x + 1, y].NumAdjacentBombs++;
+                    map[x - 1, y + 1].NumAdjacentBombs++;
+                    map[x - 1, y].NumAdjacentBombs++;
+                }
+                else if (y == map.GetLength(0)-1)
+                {
+                    map[x, y - 1].NumAdjacentBombs++;
+                    map[x + 1, y - 1].NumAdjacentBombs++;
+                    map[x + 1, y].NumAdjacentBombs++;
+                    map[x - 1, y - 1].NumAdjacentBombs++;
+                    map[x - 1, y].NumAdjacentBombs++;
+                }
+                else
+                {
+                    map[x + 1, y + 1].NumAdjacentBombs++;
+                    map[x, y - 1].NumAdjacentBombs++;
+                    map[x, y + 1].NumAdjacentBombs++;
+                    map[x - 1, y + 1].NumAdjacentBombs++;
+                    map[x + 1, y - 1].NumAdjacentBombs++;
+                    map[x + 1, y].NumAdjacentBombs++;
+                    map[x - 1, y - 1].NumAdjacentBombs++;
+                    map[x - 1, y].NumAdjacentBombs++;
+                }
+                #endregion
             }
         }
 
@@ -72,6 +153,15 @@ namespace MineSweeperLibrary
             foreach (var tile in gameBoard.Tiles)
             {
                 if (tile.IsBomb)
+                    tile.IsClicked = true;
+            }
+        }
+
+        public static void DisplayAll(GameBoard gameBoard)
+        {
+            foreach (var tile in gameBoard.Tiles)
+            {
+
                     tile.IsClicked = true;
             }
         }

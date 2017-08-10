@@ -18,6 +18,8 @@ namespace MineSweeperLibrary
 
         public bool HasWon { get { return ClickCounter == Tiles.Length - NumBombs;}}
 
+        public int RemainingMoves { get { return Tiles.Length - NumBombs - ClickCounter; }}
+
         internal int dimension = 10;
 
         public GameBoard(int difficulty)

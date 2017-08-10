@@ -6,7 +6,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:Button ID='BtnStartGame' runat='server' Text='Start Game' OnClick="BtnStartGame_Click" />
 
-
+    <asp:Label CssClass="LabelRemainingMoves" ID="LabelRemainingMoves" runat="server" Text=""></asp:Label>
     <table>
         <asp:Literal ID="LiteralBoard" runat="server"></asp:Literal>
     </table>

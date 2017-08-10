@@ -62,6 +62,7 @@ namespace Project2MineSweeper
 
         private void PrintGameBoard(GameBoard gameBoard)
         {
+            LabelRemainingMoves.Text = "Remaining moves: " + gameBoard.RemainingMoves.ToString();
             string boardHtml = "";
 
             for (int i = 0; i < 10; i++)

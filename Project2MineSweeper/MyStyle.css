@@ -1,0 +1,9 @@
+﻿body {
+}
+#GIF{
+    position:fixed;
+    right:20%;
+    top:20%;
+    visibility:hidden;
+}
+

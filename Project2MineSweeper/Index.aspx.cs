@@ -28,16 +28,13 @@ namespace Project2MineSweeper
 
                         if (!tileClicked.IsClicked)
                         {
-                            if (Request["click"] == "left")
+                            if (Request["click"] == "left" && !tileClicked.IsFlagged)
                             {
-                                if (!tileClicked.IsFlagged)
+                                GameController.HandleClick(x, y, gameBoard);
+                                if (tileClicked.IsBomb)
                                 {
-                                    tileClicked.IsClicked = true;
-                                    if (tileClicked.IsBomb)
-                                    {
-                                        GameController.EnableBombs(gameBoard);
-                                        gameBoard.GameOver = true;
-                                    }
+                                    GameController.EnableBombs(gameBoard);
+                                    gameBoard.GameOver = true;
                                 }
                             }
                             else if (Request["click"] == "right")
@@ -45,6 +42,11 @@ namespace Project2MineSweeper
                                 tileClicked.IsFlagged = !tileClicked.IsFlagged;
                             }
                         }
+                        if (gameBoard.HasWon)
+                        {
+                            ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + "Grattis" + "');", true);
+                        }
+
                     }
                     else
                     {

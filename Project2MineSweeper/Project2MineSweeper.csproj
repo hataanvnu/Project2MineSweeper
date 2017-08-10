@@ -65,6 +65,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="MyStyle.css" />
     <Content Include="Scripts\myScript.js" />
     <Content Include="packages.config" />
     <Content Include="Main.Master" />

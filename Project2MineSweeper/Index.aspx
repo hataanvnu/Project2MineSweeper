@@ -10,4 +10,7 @@
     <table>
         <asp:Literal ID="LiteralBoard" runat="server"></asp:Literal>
     </table>
+    <div id="GIF">
+        <img src="https://media2.giphy.com/media/3jGewqNYjuPhm/giphy.gif" />
+    </div>
     </asp:Content>

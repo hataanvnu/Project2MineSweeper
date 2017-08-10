@@ -53,7 +53,7 @@ namespace MineSweeperLibrary
                         map[x + 1, y].NumAdjacentBombs++;
 
                     }
-                    else if (y == map.GetLength(0)-1)
+                    else if (y == map.GetLength(0) - 1)
                     {
                         map[x + 1, y - 1].NumAdjacentBombs++;
                         map[x, y - 1].NumAdjacentBombs++;
@@ -69,7 +69,7 @@ namespace MineSweeperLibrary
 
                     }
                 }
-                else if (x == map.GetLength(0)-1)
+                else if (x == map.GetLength(0) - 1)
                 {
                     if (y == 0)
                     {
@@ -77,7 +77,7 @@ namespace MineSweeperLibrary
                         map[x - 1, y + 1].NumAdjacentBombs++;
                         map[x - 1, y].NumAdjacentBombs++;
                     }
-                    else if (y == map.GetLength(0)-1)
+                    else if (y == map.GetLength(0) - 1)
                     {
                         map[x - 1, y].NumAdjacentBombs++;
                         map[x, y - 1].NumAdjacentBombs++;
@@ -102,7 +102,7 @@ namespace MineSweeperLibrary
                     map[x - 1, y + 1].NumAdjacentBombs++;
                     map[x - 1, y].NumAdjacentBombs++;
                 }
-                else if (y == map.GetLength(0)-1)
+                else if (y == map.GetLength(0) - 1)
                 {
                     map[x, y - 1].NumAdjacentBombs++;
                     map[x + 1, y - 1].NumAdjacentBombs++;
@@ -122,6 +122,30 @@ namespace MineSweeperLibrary
                     map[x - 1, y].NumAdjacentBombs++;
                 }
                 #endregion
+            }
+        }
+
+        public static void HandleClick(int x, int y, GameBoard gameBoard)
+        {
+            if (!(x < 0 || y < 0 || x >= gameBoard.dimension || y >= gameBoard.dimension))
+            {
+                Tile tileClicked = gameBoard.Tiles[x, y];
+                if (!(tileClicked.IsClicked || tileClicked.IsFlagged || tileClicked.IsBomb))
+                {
+                    tileClicked.IsClicked = true;
+                    gameBoard.ClickCounter++;
+                    if (tileClicked.NumAdjacentBombs == 0)
+                    {
+                        HandleClick(x + 1, y, gameBoard);
+                        HandleClick(x + 1, y - 1, gameBoard);
+                        HandleClick(x + 1, y + 1, gameBoard);
+                        HandleClick(x - 1, y - 1, gameBoard);
+                        HandleClick(x - 1, y + 1, gameBoard);
+                        HandleClick(x - 1, y, gameBoard);
+                        HandleClick(x, y + 1, gameBoard);
+                        HandleClick(x, y - 1, gameBoard);
+                    }
+                }
             }
         }
 
@@ -162,7 +186,7 @@ namespace MineSweeperLibrary
             foreach (var tile in gameBoard.Tiles)
             {
 
-                    tile.IsClicked = true;
+                tile.IsClicked = true;
             }
         }
     }

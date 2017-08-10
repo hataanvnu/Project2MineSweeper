@@ -6,11 +6,12 @@
 <head runat="server">
     <script src="Scripts/jquery-3.1.1.js"></script>
     <script src="Scripts/myScript.js"></script>
+    <link href="MyStyle.css" rel="stylesheet" />
     <title></title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
-<body>
+<body oncontextmenu="return false;">
     <form id="form1" runat="server">
         <div>
             <h1>

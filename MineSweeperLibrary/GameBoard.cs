@@ -14,12 +14,17 @@ namespace MineSweeperLibrary
 
         public bool GameOver { get; set; }
 
+        public int ClickCounter { get; set; }
+
+        public bool HasWon { get { return ClickCounter == Tiles.Length - NumBombs;}}
+
         internal int dimension = 10;
 
         public GameBoard(int difficulty)
         {
             NumBombs = difficulty;
             GameOver = false;
+            ClickCounter = 0;
 
             Tiles = new Tile[dimension, dimension];
 

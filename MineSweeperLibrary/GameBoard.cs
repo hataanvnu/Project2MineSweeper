@@ -12,7 +12,7 @@ namespace MineSweeperLibrary
 
         public int NumBombs { get; set; }
 
-        private int dimension = 10;
+        internal int dimension = 10;
 
         public GameBoard(int difficulty)
         {

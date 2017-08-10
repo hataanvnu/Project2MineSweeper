@@ -65,7 +65,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="myScript.js" />
+    <Content Include="Scripts\myScript.js" />
     <Content Include="packages.config" />
     <Content Include="Main.Master" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />

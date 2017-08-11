@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project2MineSweeper", "Proj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MineSweeperLibrary", "MineSweeperLibrary\MineSweeperLibrary.csproj", "{9C061631-3B5A-4E92-8CF2-5AA06349275D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLLibrary", "SQLLibrary\SQLLibrary.csproj", "{B50F06BB-B2AB-4FBA-AEC8-65166B270CEE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{9C061631-3B5A-4E92-8CF2-5AA06349275D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C061631-3B5A-4E92-8CF2-5AA06349275D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C061631-3B5A-4E92-8CF2-5AA06349275D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B50F06BB-B2AB-4FBA-AEC8-65166B270CEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B50F06BB-B2AB-4FBA-AEC8-65166B270CEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B50F06BB-B2AB-4FBA-AEC8-65166B270CEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B50F06BB-B2AB-4FBA-AEC8-65166B270CEE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

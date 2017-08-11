@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using MineSweeperLibrary;
+using SQLLibrary;
 
 namespace Project2MineSweeper
 {
@@ -20,8 +21,12 @@ namespace Project2MineSweeper
                 int x = Convert.ToInt32(Request["x"]);
                 string click = Request["click"];
 
-                if (Session["gameboard"] != null)
+                if (Session["gameboard"] != null && Session["playerName"] != null)
                 {
+                    TextBoxPlayerName.Text = (string)Session["playerName"];
+
+                    TextBoxPlayerName.Enabled = false;
+ 
                     GameBoard gameBoard = (GameBoard)Session["gameboard"];
                     if (!gameBoard.GameOver)
                     {
@@ -50,6 +55,10 @@ namespace Project2MineSweeper
                         {
                             ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + "Grattis" + "');", true);
                             // todo: save player to highscore.
+
+                            int result = MySql.AddHighScore(TextBoxPlayerName.Text, gameBoard.ClickCounter.ToString(), "Hard");
+
+                            Server.Transfer("HighScorePage.aspx");
                         }
 
                     }
@@ -87,7 +96,7 @@ namespace Project2MineSweeper
                             boardHtml += "background-color:red; color:white;' value='B'";
                         else
                         {
-                            boardHtml += "border-style:solid; border-color:grey; border-width: 1px;";  
+                            boardHtml += "border-style:solid; border-color:grey; border-width: 1px;";
 
                             switch (tileClicked.NumAdjacentBombs)
                             {
@@ -112,7 +121,7 @@ namespace Project2MineSweeper
                                 boardHtml += $"value='&nbsp'";
                             }
                             else
-                            boardHtml += $"value='{tileClicked.NumAdjacentBombs}'";
+                                boardHtml += $"value='{tileClicked.NumAdjacentBombs}'";
                         }
                     else if (tileClicked.IsFlagged)
                         boardHtml += "'value='F'";
@@ -129,12 +138,19 @@ namespace Project2MineSweeper
 
         protected void BtnStartGame_Click(object sender, EventArgs e)
         {
-            GameBoard gameBoard = GameController.InitializeGame();
 
-            Session["gameboard"] = gameBoard;
+            if (IsValid)
+            {
 
-            PrintGameBoard(gameBoard);
+                GameBoard gameBoard = GameController.InitializeGame();
 
+                Session["gameboard"] = gameBoard;
+                Session["playerName"] = TextBoxPlayerName.Text;
+                PrintGameBoard(gameBoard);
+
+                TextBoxPlayerName.Enabled = false;
+
+            }
         }
 
 

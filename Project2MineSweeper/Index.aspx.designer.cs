@@ -13,6 +13,42 @@ namespace Project2MineSweeper {
     public partial class Index {
         
         /// <summary>
+        /// LabelPlayerName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelPlayerName;
+        
+        /// <summary>
+        /// TextBoxPlayerName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TextBoxPlayerName;
+        
+        /// <summary>
+        /// RFVPlayerName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVPlayerName;
+        
+        /// <summary>
+        /// FEVPlayerName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator FEVPlayerName;
+        
+        /// <summary>
         /// BtnStartGame control.
         /// </summary>
         /// <remarks>

@@ -10,10 +10,10 @@ namespace SQLLibrary
     {
         public int ID { get; set; }
         public string PlayerName { get; set; }
-        public string Score { get; set; }
+        public int Score { get; set; }
         public string Difficulty { get; set; }
 
-        public HighScore(int id, string playerName, string score, string difficulty)
+        public HighScore(int id, string playerName, int score, string difficulty)
         {
             ID = id;
             PlayerName = playerName;

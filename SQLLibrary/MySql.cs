@@ -73,13 +73,17 @@ namespace SQLLibrary
                 myCommand.CommandType = System.Data.CommandType.StoredProcedure;
                 myCommand.CommandText = $"sp_ReadHighScore";
 
+                SqlParameter paramDifficulty = new SqlParameter("@Difficulty", System.Data.DbType.String);
+                paramDifficulty.Value = "Hard";
+                myCommand.Parameters.Add(paramDifficulty);
+
                 SqlDataReader myReader = myCommand.ExecuteReader();
 
                 while (myReader.Read())
                 {
                     int id = Convert.ToInt32(myReader["ID"].ToString());
                     string playerName = myReader["PlayerName"].ToString();
-                    string score = myReader["Score"].ToString();
+                    int score = Convert.ToInt32(myReader["Score"].ToString());
                     string difficulty = myReader["Difficulty"].ToString();
 
                     highScoreList.Add(new HighScore(id, playerName, score, difficulty));

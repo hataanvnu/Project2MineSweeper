@@ -20,7 +20,7 @@ namespace MineSweeperLibrary
 
         public int dimension = 10;
 
-        public int ClickCounter = 0;
+        public int ClickCounter { get; set; } = 0;
 
         public GameBoard(int difficulty)
         {

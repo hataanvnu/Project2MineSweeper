@@ -16,7 +16,7 @@ namespace Project2MineSweeper
 
             string highScoreBody = "";
 
-            for (int i = 0; i < highScore.Length && i < 10; i++)
+            for (int i = 0; i < highScore.Length; i++)
             {
                 highScoreBody += "<tr>";
                 highScoreBody += $"<td>{i+1}</td>";

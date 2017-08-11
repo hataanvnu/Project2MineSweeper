@@ -26,7 +26,7 @@ namespace Project2MineSweeper
                     TextBoxPlayerName.Text = (string)Session["playerName"];
 
                     TextBoxPlayerName.Enabled = false;
- 
+
                     GameBoard gameBoard = (GameBoard)Session["gameboard"];
                     if (!gameBoard.GameOver)
                     {
@@ -37,7 +37,7 @@ namespace Project2MineSweeper
                             if (Request["click"] == "left" && !tileClicked.IsFlagged)
                             {
 
-                                gameBoard.ClickCounter++;
+                                gameBoard.ClickCounter++; // todo: överväg att flytta denna så att flera klicks räknas
 
                                 GameController.HandleClick(x, y, gameBoard);
                                 if (tileClicked.IsBomb)
@@ -48,13 +48,27 @@ namespace Project2MineSweeper
                             }
                             else if (Request["click"] == "right")
                             {
+
                                 tileClicked.IsFlagged = !tileClicked.IsFlagged;
+
+
                             }
                         }
-                        if (GameController.WinCondition(gameBoard))
+                        else if (Request["click"] == "right")
+                        {
+                            int numAdjacentFlags = GameController.GetAdjacentFlags(gameBoard, x, y);
+
+                            if (numAdjacentFlags == tileClicked.NumAdjacentBombs)
+                            {
+                                GameController.ActivateAdjacentTilesNotFlagged(gameBoard, x, y);
+                            }
+
+                            // todo: lägg till handleclick metoden och att om en bomb trycks ner så förlorar vi.
+                        }
+
+                        if (GameController.WinCondition(gameBoard)) // todo: se till att windcondition stämmer och att vi alltid kommer hit
                         {
                             ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + "Grattis" + "');", true);
-                            // todo: save player to highscore.
 
                             int result = MySql.AddHighScore(TextBoxPlayerName.Text, gameBoard.ClickCounter.ToString(), "Hard");
 

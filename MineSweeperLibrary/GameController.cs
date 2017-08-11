@@ -52,13 +52,13 @@ namespace MineSweeperLibrary
 
                 try
                 {
-                map[x + 1, y + 1].NumAdjacentBombs++;
+                    map[x + 1, y + 1].NumAdjacentBombs++;
                 }
                 catch (Exception)
-                {}
+                { }
                 try
                 {
-                map[x, y - 1].NumAdjacentBombs++;
+                    map[x, y - 1].NumAdjacentBombs++;
                 }
                 catch (Exception)
                 {
@@ -200,6 +200,170 @@ namespace MineSweeperLibrary
                 #endregion //bortkommenterad
 
             }
+        }
+
+        public static void ActivateAdjacentTilesNotFlagged(GameBoard gameBoard, int x, int y)
+        {
+
+            Tile[,] map = gameBoard.Tiles;
+
+            try
+            {
+                if (!map[x + 1, y + 1].IsFlagged)
+                {
+                    map[x + 1, y + 1].IsClicked = true;
+
+                }
+            }
+            catch (Exception)
+            { }
+            try
+            {
+                if (!map[x + 1, y].IsFlagged)
+                {
+                    map[x + 1, y ].IsClicked = true;
+
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+            try
+            {
+                if (!map[x + 1, y - 1].IsFlagged)
+                {
+                    map[x + 1, y - 1].IsClicked = true;
+
+                }
+            }
+            catch (Exception)
+            { }
+            try
+            {
+                if (!map[x, y - 1].IsFlagged)
+                {
+                    map[x , y - 1].IsClicked = true;
+
+                }
+            }
+            catch (Exception)
+            { }
+            try
+            {
+                if (!map[x - 1, y - 1].IsFlagged)
+                {
+                    map[x - 1, y - 1].IsClicked = true;
+
+                }
+            }
+            catch (Exception)
+            { }
+            try
+            {
+                if (!map[x - 1, y ].IsFlagged)
+                {
+                    map[x - 1, y ].IsClicked = true;
+
+                }
+            }
+            catch (Exception)
+            { }
+            try
+            {
+                if (!map[x - 1, y + 1].IsFlagged)
+                {
+                    map[x - 1, y + 1].IsClicked = true;
+
+                }
+            }
+            catch (Exception)
+            { }
+            try
+            {
+                if (!map[x, y + 1].IsFlagged)
+                {
+                    map[x, y + 1].IsClicked = true;
+
+                }
+            }
+            catch (Exception)
+            { }
+
+        }
+
+        public static int GetAdjacentFlags(GameBoard gameBoard, int x, int y)
+        {
+            int flagCounter = 0;
+
+            Tile[,] map = gameBoard.Tiles;
+
+            try
+            {
+                if (map[x + 1, y + 1].IsFlagged)
+                {
+                    flagCounter++;
+                }
+            }
+            catch { }
+            try
+            {
+                if (map[x + 1, y].IsFlagged)
+                {
+                    flagCounter++;
+                }
+            }
+            catch { }
+            try
+            {
+                if (map[x + 1, y - 1].IsFlagged)
+                {
+                    flagCounter++;
+                }
+            }
+            catch { }
+            try
+            {
+                if (map[x, y - 1].IsFlagged)
+                {
+                    flagCounter++;
+                }
+            }
+            catch { }
+            try
+            {
+                if (map[x - 1, y - 1].IsFlagged)
+                {
+                    flagCounter++;
+                }
+            }
+            catch { }
+            try
+            {
+                if (map[x - 1, y].IsFlagged)
+                {
+                    flagCounter++;
+                }
+            }
+            catch { }
+            try
+            {
+                if (map[x - 1, y + 1].IsFlagged)
+                {
+                    flagCounter++;
+                }
+            }
+            catch { }
+            try
+            {
+                if (map[x, y + 1].IsFlagged)
+                {
+                    flagCounter++;
+                }
+            }
+            catch { }
+
+            return flagCounter;
         }
 
         public static void HandleClick(int x, int y, GameBoard gameBoard)

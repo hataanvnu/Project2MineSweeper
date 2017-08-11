@@ -15,6 +15,7 @@ namespace Project2MineSweeper
 
             if (Request["x"] != null && Request["y"] != null && Request["click"] != null)
             {
+
                 int y = Convert.ToInt32(Request["y"]);
                 int x = Convert.ToInt32(Request["x"]);
                 string click = Request["click"];
@@ -30,6 +31,9 @@ namespace Project2MineSweeper
                         {
                             if (Request["click"] == "left" && !tileClicked.IsFlagged)
                             {
+
+                                gameBoard.ClickCounter++;
+
                                 GameController.HandleClick(x, y, gameBoard);
                                 if (tileClicked.IsBomb)
                                 {
@@ -42,9 +46,10 @@ namespace Project2MineSweeper
                                 tileClicked.IsFlagged = !tileClicked.IsFlagged;
                             }
                         }
-                        if (gameBoard.HasWon)
+                        if (GameController.WinCondition(gameBoard))
                         {
                             ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + "Grattis" + "');", true);
+                            // todo: save player to highscore.
                         }
 
                     }
@@ -63,29 +68,29 @@ namespace Project2MineSweeper
         private void PrintGameBoard(GameBoard gameBoard)
         {
             LabelRemainingMoves.Text = "Remaining moves: " + gameBoard.RemainingMoves.ToString();
+            LabelMoveCounter.Text = "Moves: " + gameBoard.ClickCounter.ToString();
             string boardHtml = "";
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < gameBoard.dimension; i++)
             {
                 boardHtml += "<tr>";
-                for (int j = 0; j < 10; j++)
+                for (int j = 0; j < gameBoard.dimension; j++)
                 {
                     Tile tileClicked = gameBoard.Tiles[j, i];
 
                     boardHtml += "<td>";
 
-                    boardHtml += $"<input id='Button_{j}_{i}' class='element' type='button' style='font-weight: bold; font-size: 30px; width: 50px; height: 50px;";
+                    boardHtml += $"<input id='Button_{j}_{i}' class='element' type='button' style='font-weight: bold; background-color:lightgrey; font-size: 30px; width: 50px; height: 50px;";
 
                     if (tileClicked.IsClicked)
                         if (tileClicked.IsBomb)
                             boardHtml += "background-color:red; color:white;' value='B'";
                         else
                         {
+                            boardHtml += "border-style:solid; border-color:grey; border-width: 1px;";  
+
                             switch (tileClicked.NumAdjacentBombs)
                             {
-                                case 0:
-                                    boardHtml += "background-color:darkgreen;'";
-                                    break;
                                 case 1:
                                     boardHtml += "color:blue;'";
                                     break;
@@ -102,6 +107,11 @@ namespace Project2MineSweeper
                                     boardHtml += "color:orangered;'";
                                     break;
                             }
+                            if (tileClicked.NumAdjacentBombs == 0)
+                            {
+                                boardHtml += $"value='&nbsp'";
+                            }
+                            else
                             boardHtml += $"value='{tileClicked.NumAdjacentBombs}'";
                         }
                     else if (tileClicked.IsFlagged)

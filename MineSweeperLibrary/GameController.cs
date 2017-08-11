@@ -34,6 +34,11 @@ namespace MineSweeperLibrary
             return gameBoard;
         }
 
+        public static bool WinCondition(GameBoard currentGame)
+        {
+            return currentGame.AmountOfTilesClicked == currentGame.Tiles.Length - currentGame.NumBombs;
+        }
+
         private static void SetNumberOfAdjacentBombs(GameBoard gameBoard, BombCoordinate[] bombCoordinates)
         {
             Tile[,] map = gameBoard.Tiles;
@@ -44,84 +49,156 @@ namespace MineSweeperLibrary
                 int y = bomb.yCoordinate;
 
                 #region bombräkning
-                if (x == 0)
+
+                try
                 {
-                    if (y == 0)
-                    {
-                        map[x, y + 1].NumAdjacentBombs++;
-                        map[x + 1, y + 1].NumAdjacentBombs++;
-                        map[x + 1, y].NumAdjacentBombs++;
-
-                    }
-                    else if (y == map.GetLength(0) - 1)
-                    {
-                        map[x + 1, y - 1].NumAdjacentBombs++;
-                        map[x, y - 1].NumAdjacentBombs++;
-                        map[x + 1, y].NumAdjacentBombs++;
-                    }
-                    else
-                    {
-                        map[x, y + 1].NumAdjacentBombs++;
-                        map[x + 1, y + 1].NumAdjacentBombs++;
-                        map[x + 1, y].NumAdjacentBombs++;
-                        map[x, y - 1].NumAdjacentBombs++;
-                        map[x + 1, y - 1].NumAdjacentBombs++;
-
-                    }
+                map[x + 1, y + 1].NumAdjacentBombs++;
                 }
-                else if (x == map.GetLength(0) - 1)
+                catch (Exception)
+                {}
+                try
                 {
-                    if (y == 0)
-                    {
-                        map[x, y + 1].NumAdjacentBombs++;
-                        map[x - 1, y + 1].NumAdjacentBombs++;
-                        map[x - 1, y].NumAdjacentBombs++;
-                    }
-                    else if (y == map.GetLength(0) - 1)
-                    {
-                        map[x - 1, y].NumAdjacentBombs++;
-                        map[x, y - 1].NumAdjacentBombs++;
-                        map[x - 1, y - 1].NumAdjacentBombs++;
-                    }
-                    else
-                    {
-                        map[x, y + 1].NumAdjacentBombs++;
-                        map[x - 1, y + 1].NumAdjacentBombs++;
-                        map[x - 1, y].NumAdjacentBombs++;
-                        map[x, y - 1].NumAdjacentBombs++;
-                        map[x - 1, y - 1].NumAdjacentBombs++;
-                    }
-
+                map[x, y - 1].NumAdjacentBombs++;
+                }
+                catch (Exception)
+                {
 
                 }
-                else if (y == 0)
+                try
                 {
                     map[x, y + 1].NumAdjacentBombs++;
-                    map[x + 1, y + 1].NumAdjacentBombs++;
-                    map[x + 1, y].NumAdjacentBombs++;
-                    map[x - 1, y + 1].NumAdjacentBombs++;
-                    map[x - 1, y].NumAdjacentBombs++;
                 }
-                else if (y == map.GetLength(0) - 1)
+                catch (Exception)
                 {
-                    map[x, y - 1].NumAdjacentBombs++;
-                    map[x + 1, y - 1].NumAdjacentBombs++;
-                    map[x + 1, y].NumAdjacentBombs++;
-                    map[x - 1, y - 1].NumAdjacentBombs++;
-                    map[x - 1, y].NumAdjacentBombs++;
+
                 }
-                else
+                try
                 {
-                    map[x + 1, y + 1].NumAdjacentBombs++;
-                    map[x, y - 1].NumAdjacentBombs++;
-                    map[x, y + 1].NumAdjacentBombs++;
                     map[x - 1, y + 1].NumAdjacentBombs++;
+
+                }
+                catch (Exception)
+                {
+
+                }
+                try
+                {
                     map[x + 1, y - 1].NumAdjacentBombs++;
+
+                }
+                catch (Exception)
+                {
+
+                }
+                try
+                {
                     map[x + 1, y].NumAdjacentBombs++;
+
+                }
+                catch (Exception)
+                {
+
+                }
+                try
+                {
                     map[x - 1, y - 1].NumAdjacentBombs++;
+
+                }
+                catch (Exception)
+                {
+
+                }
+                try
+                {
                     map[x - 1, y].NumAdjacentBombs++;
+
+                }
+                catch (Exception)
+                {
+
                 }
                 #endregion
+
+                #region bombräkning Kopia
+                //if (x == 0)
+                //{
+                //    if (y == 0)
+                //    {
+                //        map[x, y + 1].NumAdjacentBombs++;
+                //        map[x + 1, y + 1].NumAdjacentBombs++;
+                //        map[x + 1, y].NumAdjacentBombs++;
+
+                //    }
+                //    else if (y == map.GetLength(0) - 1)
+                //    {
+                //        map[x + 1, y - 1].NumAdjacentBombs++;
+                //        map[x, y - 1].NumAdjacentBombs++;
+                //        map[x + 1, y].NumAdjacentBombs++;
+                //    }
+                //    else
+                //    {
+                //        map[x, y + 1].NumAdjacentBombs++;
+                //        map[x + 1, y + 1].NumAdjacentBombs++;
+                //        map[x + 1, y].NumAdjacentBombs++;
+                //        map[x, y - 1].NumAdjacentBombs++;
+                //        map[x + 1, y - 1].NumAdjacentBombs++;
+
+                //    }
+                //}
+                //else if (x == map.GetLength(0) - 1)
+                //{
+                //    if (y == 0)
+                //    {
+                //        map[x, y + 1].NumAdjacentBombs++;
+                //        map[x - 1, y + 1].NumAdjacentBombs++;
+                //        map[x - 1, y].NumAdjacentBombs++;
+                //    }
+                //    else if (y == map.GetLength(0) - 1)
+                //    {
+                //        map[x - 1, y].NumAdjacentBombs++;
+                //        map[x, y - 1].NumAdjacentBombs++;
+                //        map[x - 1, y - 1].NumAdjacentBombs++;
+                //    }
+                //    else
+                //    {
+                //        map[x, y + 1].NumAdjacentBombs++;
+                //        map[x - 1, y + 1].NumAdjacentBombs++;
+                //        map[x - 1, y].NumAdjacentBombs++;
+                //        map[x, y - 1].NumAdjacentBombs++;
+                //        map[x - 1, y - 1].NumAdjacentBombs++;
+                //    }
+
+
+                //}
+                //else if (y == 0)
+                //{
+                //    map[x, y + 1].NumAdjacentBombs++;
+                //    map[x + 1, y + 1].NumAdjacentBombs++;
+                //    map[x + 1, y].NumAdjacentBombs++;
+                //    map[x - 1, y + 1].NumAdjacentBombs++;
+                //    map[x - 1, y].NumAdjacentBombs++;
+                //}
+                //else if (y == map.GetLength(0) - 1)
+                //{
+                //    map[x, y - 1].NumAdjacentBombs++;
+                //    map[x + 1, y - 1].NumAdjacentBombs++;
+                //    map[x + 1, y].NumAdjacentBombs++;
+                //    map[x - 1, y - 1].NumAdjacentBombs++;
+                //    map[x - 1, y].NumAdjacentBombs++;
+                //}
+                //else
+                //{
+                //    map[x + 1, y + 1].NumAdjacentBombs++;
+                //    map[x, y - 1].NumAdjacentBombs++;
+                //    map[x, y + 1].NumAdjacentBombs++;
+                //    map[x - 1, y + 1].NumAdjacentBombs++;
+                //    map[x + 1, y - 1].NumAdjacentBombs++;
+                //    map[x + 1, y].NumAdjacentBombs++;
+                //    map[x - 1, y - 1].NumAdjacentBombs++;
+                //    map[x - 1, y].NumAdjacentBombs++;
+                //}
+                #endregion //bortkommenterad
+
             }
         }
 
@@ -133,7 +210,7 @@ namespace MineSweeperLibrary
                 if (!(tileClicked.IsClicked || tileClicked.IsFlagged || tileClicked.IsBomb))
                 {
                     tileClicked.IsClicked = true;
-                    gameBoard.ClickCounter++;
+                    gameBoard.AmountOfTilesClicked++;
                     if (tileClicked.NumAdjacentBombs == 0)
                     {
                         HandleClick(x + 1, y, gameBoard);

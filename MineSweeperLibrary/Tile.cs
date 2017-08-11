@@ -21,6 +21,7 @@ namespace MineSweeperLibrary
             IsBomb = isBomb;
             IsFlagged = false;
             IsClicked = false;
+            NumAdjacentBombs = 0;
         }
 
         public Tile()
@@ -28,6 +29,7 @@ namespace MineSweeperLibrary
             IsBomb = false;
             IsFlagged = false;
             IsClicked = false;
+            NumAdjacentBombs = 0;
         }
     }
 }
